@@ -9,7 +9,7 @@ function PostList({ isPosting, onClosePosting }) {
   const [posts, setPosts] = useState([]);
 
   function updatePosts(newPostData) {
-    setPosts((existingPost) => [newPostData, ...existingPost]);
+    setPosts((existingPost) => [...existingPost,newPostData]);
   }
   if (isPosting) {
     modalContent = (
@@ -25,9 +25,7 @@ function PostList({ isPosting, onClosePosting }) {
       {posts.length > 0 ? (
         <ul className={cssClass.posts}>
           {posts.map((post) => (
-            <li>
               <Post key={post.body} author={post.author} body={post.body} />
-            </li>
           ))}
         </ul>
       ) : (
