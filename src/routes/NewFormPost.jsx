@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import classes from "./NewFormPost.module.css";
+import Modal from "../components/Modal";
 
-function NewPost({ onClosePost, onAddPost }) {
+function NewPost({ onAddPost }) {
   // const [nameRef,setNameRef] = useState('') // useState is hook with default value in function
   // // why const? we are chaging value
   // // what is hook?
@@ -33,23 +35,25 @@ function NewPost({ onClosePost, onAddPost }) {
   }
 
   return (
-    <form className={classes.form} onSubmit={onSubmitPost}>
-      <p>
-        <label htmlFor="name">Your name</label>
-        <input type="text" id="name" onChange={AuthoreHandller} required />
-      </p>
-      {/* <p>{nameRef}</p> */}
-      <p>
-        <label htmlFor="body">Text</label>
-        <textarea id="body" required rows={3} onChange={bodyHandller} />
-      </p>
-      <p className={classes.actions}>
-        <button type="button" onClick={onClosePost}>
-          Cancel
-        </button>
-        <button>Submit</button>
-      </p>
-    </form>
+    <Modal>
+      <form className={classes.form} onSubmit={onSubmitPost}>
+        <p>
+          <label htmlFor="name">Your name</label>
+          <input type="text" id="name" onChange={AuthoreHandller} required />
+        </p>
+        {/* <p>{nameRef}</p> */}
+        <p>
+          <label htmlFor="body">Text</label>
+          <textarea id="body" required rows={3} onChange={bodyHandller} />
+        </p>
+        <p className={classes.actions}>
+          <Link to=".." type="button">
+            Cancel
+          </Link>
+          <button>Submit</button>
+        </p>
+      </form>
+    </Modal>
   );
 }
 

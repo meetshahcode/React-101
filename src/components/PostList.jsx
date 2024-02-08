@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
-import NewPost from "./NewFormPost";
 import Post from "./Post";
 import cssClass from "./PostList.module.css";
-import Modal from "./Modal";
 
-function PostList({ isPosting, onClosePosting }) {
-  var modalContent = "";
+function PostList() {
   const [posts, setPosts] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
 
@@ -35,19 +32,8 @@ function PostList({ isPosting, onClosePosting }) {
     []
   )
 
-  if (isPosting) {
-    modalContent = (
-      <Modal onClose={onClosePosting}>
-        <NewPost onClosePost={onClosePosting} onAddPost={updatePosts} />
-      </Modal>
-    );
-  }
-
   return (
     <>
-      {/* open model for new post */}
-      {modalContent}
-
       {/* post list */}
       {posts.length > 0 && !isFetching && (
         <ul className={cssClass.posts}>
