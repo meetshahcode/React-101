@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Posts from "./routes/Posts";
-import NewPost from "./routes/NewFormPost";
+import Posts, { loader as postLoader } from "./routes/Posts";
+import NewPost, { actions as postSubmitAction } from "./routes/NewFormPost";
 import RootLayout from "./routes/RootLayout";
 import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
@@ -14,7 +14,10 @@ const routes = createBrowserRouter([
       {
         path: "/",
         element: <Posts />,
-        children: [{ path: "/new-post", element: <NewPost /> }],
+        loader: postLoader,
+        children: [
+          { path: "/new-post", element: <NewPost />, action: postSubmitAction },
+        ],
       },
     ],
   },
